@@ -75,7 +75,7 @@ var ConstraintSlider = {
             this.histogram_left_offset = Math.floor(this.widget_width - this.histogram_bar_width * this.params.heights.length - this.histogram_bar_spacing * (this.params.heights.length - 1));
             
             // center the histogram
-            $(this.params.total_histogram_id).style.left = this.histogram_left_offset / 2 + 1 + 'px';
+            $(this.params.total_histogram_id).style.left = this.histogram_left_offset / 2 + 'px';
 
             var i, node;
             for(i=0; i < this.params.heights.length; i++) {
