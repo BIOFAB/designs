@@ -1,0 +1,217 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+#container {
+    padding-left: 40px;
+    padding-top: 100px;
+}
+
+
+.constraint_slider {
+    position: relative;
+    width: 700px;
+}
+
+.constraint_slider .bar_container {
+    position: relative;
+    width: 95%;
+    height: 30px;
+    border: 1px solid black;
+    z-index: 1000;
+}
+
+.constraint_slider .constrained_area {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    right: 200px;
+    bottom: 0;
+    background-color: green;
+}
+
+.constraint_slider .slider {
+    position: absolute;
+    top: -8px;
+    width: 14px;
+    height: 46px;
+    background-color: gray;
+    z-index: 1;
+}
+
+.constraint_slider .left_slider {
+    left: 0;
+}
+
+.constraint_slider .right_slider {
+    right: 0;
+}
+
+.constraint_slider .angle_line .vertical_line {
+    position: absolute;
+    bottom: -9px;
+    left: 7px;
+    width: 1px;
+    height: 7px;
+    background-color: black;
+}
+
+.constraint_slider .left_slider .angle_line .horizontal_line {
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    width: 7px;
+    height: 1px;
+    background-color: black;
+}
+
+.constraint_slider .right_slider .angle_line .horizontal_line {
+    position: absolute;
+    bottom: -9px;
+    left: 7px;
+    width: 7px;
+    height: 1px;
+    background-color: black;
+}
+
+.constraint_slider .left_slider .label {
+    position: absolute;
+    bottom: -13px;
+    left: -18px;
+    font-size: 8px;
+}
+
+.constraint_slider .right_slider .label {
+    position: absolute;
+    bottom: -13px;
+    left: 17px;
+    font-size: 8px;
+}
+
+.constraint_slider .tree {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    background-color: gray;
+    z-index: 100;
+}
+
+.constraint_slider .forest_of_divs .active {
+    background-color: red;
+    z-index: 90;
+}
+
+.constraint_slider .histogram_container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 4px;
+}
+
+.constraint_slider .total_histogram_container .bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    background-color: orange;
+    opacity: 0.4;
+}
+
+#b1 {
+    left: 0;
+    height: 50px;
+}
+
+#b2 {
+    left: 12px;
+    height: 60px;
+}
+
+#b3 {
+    left: 24px;
+    height: 80px;
+}
+
+#tree_1 {
+    left: 50px;
+    height: 50px;
+}
+
+#tree_2 {
+    left: 70px;
+    height: 40px;
+}
+
+#tree_3 {
+    left: 80px;
+    height: 50px;
+}
+
+#tree_4 {
+    left: 100px;
+    height: 40px;
+}
+
+
+#tree_5 {
+    left: 140px;
+    height: 50px;
+}
+
+#tree_6 {
+    left: 150px;
+    height: 40px;
+}
+
+#tree_15 {
+    left: 220px;
+    height: 50px;
+}
+
+#tree_7 {
+    left: 240px;
+    height: 50px;
+}
+
+#tree_8 {
+    left: 277px;
+    height: 40px;
+}
+
+#tree_9 {
+    left: 285px;
+    height: 50px;
+}
+
+#tree_10 {
+    left: 300px;
+    height: 40px;
+}
+
+#tree_11 {
+    left: 320px;
+    height: 50px;
+}
+
+#tree_12 {
+    left: 360px;
+    height: 40px;
+}
+
+#tree_13 {
+    left: 370px;
+    height: 50px;
+}
+
+#tree_14 {
+    left: 380px;
+    height: 40px;
+}
+
+#tree_16 {
+    left: 400px;
+    height: 40px;
+}

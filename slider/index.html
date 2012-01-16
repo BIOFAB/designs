@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Slider widget</title>
+
+      <script id='constraint_slider_template' type='text/x-dot-template'>
+
+        <div class='constraint_slider'>
+          <div class='histogram_container'>
+            <!-- histogram for all items -->
+            <div class='total_histogram_container'>
+              <div class='bar' id='b1'></div>
+              <div class='bar' id='b2'></div>
+              <div class='bar' id='b3'></div>
+            </div>
+            <!-- histogram for constrained items only -->
+            <div class='constrained_histogram_container'>
+              
+            </div>
+          </div>
+          <div class='bar_container'>
+            <div class='forest_of_divs'>
+              <!-- it's dangerous to go alone -->
+              <div class='tree' id='tree_1'></div>
+              <div class='tree' id='tree_2'></div>
+              <div class='tree' id='tree_3'></div>
+              <div class='tree' id='tree_4'></div>
+              <div class='tree' id='tree_5'></div>
+              <div class='tree' id='tree_6'></div>
+              <div class='tree active' id='tree_7'></div>
+              <div class='tree active' id='tree_8'></div>
+              <div class='tree active' id='tree_9'></div>
+              <div class='tree active' id='tree_10'></div>
+              <div class='tree active' id='tree_11'></div>
+              <div class='tree active' id='tree_12'></div>
+              <div class='tree active' id='tree_13'></div>
+              <div class='tree active' id='tree_14'></div>
+              <div class='tree active' id='tree_15'></div>
+              <div class='tree active' id='tree_16'></div>
+            </div>
+            <div class='constrained_area'>
+              <div class='slider left_slider'>
+                <div class='label_container'>
+                  <div class='angle_line'>
+                    <div class='vertical_line'></div>
+                    <div class='horizontal_line'></div>
+                  </div>
+                  <div class='label'>min</div>
+                </div>
+              </div>
+              <div class='slider right_slider'>
+                <div class='label_container'>
+                  <div class='angle_line'>
+                    <div class='vertical_line'></div>
+                    <div class='horizontal_line'></div>
+                  </div>
+                </div>
+                <div class='label'>max</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </script>
+
+
+      <link rel='stylesheet' type='text/css' href='main.css' />
+
+      <script type='text/javascript' src='prototype.js'></script>
+      <script type='text/javascript' src='doT.js'></script>
+
+      <script type='text/javascript' src='ConstraintSlider.js'></script>
+
+      <script type='text/javascript' src='main.js'></script>
+
+
+
+      <script type='text/javascript'>
+
+        function page_init() {
+
+          ConstraintSlider.init();
+
+          var slider = ConstraintSlider.create('dynamic_slider');
+          
+        }
+
+      </script>
+
+    </head>
+    <body onload='page_init()'>
+
+      <div id='container'>
+
+        <div id='dynamic_slider'></div>
+        
+      </div>
+    </body>
+</html> 
