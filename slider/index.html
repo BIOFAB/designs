@@ -5,13 +5,10 @@
 
       <script id='constraint_slider_template' type='text/x-dot-template'>
 
-        <div class='constraint_slider'>
+        <div id="{{=it.node_id}}" class='constraint_slider'>
           <div class='histogram_container'>
             <!-- histogram for all items -->
-            <div class='total_histogram_container'>
-              <div class='bar' id='b1'></div>
-              <div class='bar' id='b2'></div>
-              <div class='bar' id='b3'></div>
+            <div id="{{=it.total_histogram_id}}" class='total_histogram_container'>
             </div>
             <!-- histogram for constrained items only -->
             <div class='constrained_histogram_container'>
@@ -81,7 +78,10 @@
 
           ConstraintSlider.init();
 
-          var slider = ConstraintSlider.create('dynamic_slider');
+          var slider = ConstraintSlider.create('dynamic_slider', {
+        heights: [40, 30, 60, 80, 90, 70, 40, 30, 60, 80, 90, 70, 40, 30, 60, 80, 90, 70, 40, 30, 60, 80, 90, 70]
+
+});
           
         }
 

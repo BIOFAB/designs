@@ -19,9 +19,9 @@ var ConstraintSlider = {
 
     },
 
-    create: function(node_id, params) {
+    create: function(container_id, params) {
      
-        var slider = new this.slider_class(this, node_id, params);
+        var slider = new this.slider_class(this, container_id, params);
         if(!slider) {
             return null;
         }
@@ -43,22 +43,58 @@ var ConstraintSlider = {
         return false;
     },
 
-    slider_class: function(parent, node_id, params) {
+    slider_class: function(parent, container_id, params) {
 
         this.parent = parent;
+        this.unique = Math.floor(Math.random() * 100000000);
 
-        if(!$(node_id)) {
+        if(!$(container_id)) {
             return null;
         }
 
-        this.node_id = node_id;
+        this.container_id = container_id;
         this.params = Object.extend({
-            foo: 'bar'
+            total_histogram_id: 'total_histogram_'+this.unique,
+            node_id: 'constraint_slider_'+this.unique
         }, params || {});
 
-        var result = this.parent.template({});
+        var result = this.parent.template(this.params);
 
-        $(node_id).innerHTML = result;
+        $(container_id).innerHTML = result;
+
+        this.init_histogram = function(container_id) {
+            if(!params.heights || (params.heights.length == 0)) {
+                return null;
+            }
+            
+            this.widget_width = $(this.params.node_id).getDimensions().width;
+
+            var per_bar = Math.floor(this.widget_width / this.params.heights.length);
+            this.histogram_bar_spacing = 2;
+            this.histogram_bar_width = per_bar - this.histogram_bar_spacing;
+            this.histogram_left_offset = Math.floor(this.widget_width - this.histogram_bar_width * this.params.heights.length - this.histogram_bar_spacing * (this.params.heights.length - 1));
+            
+            // center the histogram
+            $(this.params.total_histogram_id).style.left = this.histogram_left_offset / 2 + 1 + 'px';
+
+            var i, node;
+            for(i=0; i < this.params.heights.length; i++) {
+                node = this.make_histogram_bar(this.params.heights[i]);
+                node.style.left = (i * this.histogram_bar_width) + (i * this.histogram_bar_spacing) + 'px';
+                $(this.params.total_histogram_id).appendChild(node);
+            }
+        };
+
+        this.make_histogram_bar = function(height) {
+            var node = document.createElement('DIV');
+            node.className = 'bar';
+            node.style.width = this.histogram_bar_width + 'px';
+            node.style.height = height + 'px';
+            return node;
+        };
+
+
+        this.init_histogram();
 
     }
 
