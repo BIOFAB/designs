@@ -7,9 +7,10 @@
 
         <div id="{{=it.node_id}}" class='constraint_slider'>
           <div class='histogram_container'>
+            <!-- horizontal lines and stuff -->
+            <div class='horizontal_lines'></div>
             <!-- histogram for all items -->
-            <div id="{{=it.total_histogram_id}}" class='total_histogram_container'>
-            </div>
+            <div id="{{=it.total_histogram_id}}" class='total_histogram_container'></div>
             <!-- histogram for constrained items only -->
             <div class='constrained_histogram_container'>
               
@@ -79,9 +80,19 @@
 
           ConstraintSlider.init();
 
+          var data_count = 1000;
+          var data = []
+          var i;
+          for(i=0; i < data_count; i++) {
+            data.push(Math.random() * 10);
+          }
+        
           var slider = ConstraintSlider.create('dynamic_slider', {
-        heights: [40, 30, 60, 80, 90, 70, 40, 30, 60, 80, 90, 70, 40, 30, 60, 80, 90, 70, 40, 30, 60, 80, 90, 70]
-
+            data: data,
+            bin_count: 25,
+            histogram_max_height: 60,
+            y_axis_max: 60, // Can also be 'dynamic'. If you specify this, then you _must_not_ have any bins with more entries than y_axis_max. If you do, the widget will exceed histogram_max_height.
+            horizontal_lines: true
 });
           
         }
@@ -95,6 +106,10 @@
 
         <div id='dynamic_slider'></div>
         
+      </div>
+
+      <div id='debug' style='border:1px solid black; padding:50px; margin:40px;'>
+        debug
       </div>
     </body>
 </html> 

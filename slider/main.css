@@ -1,4 +1,7 @@
 
+
+
+
 html, body {
     margin: 0;
     padding: 0;
@@ -14,6 +17,15 @@ html, body {
 .constraint_slider {
     position: relative;
     width: 700px;
+
+    /* Juul new */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
 }
 
 .constraint_slider .bar_container {
@@ -31,7 +43,7 @@ html, body {
     position: absolute;
     top: 0;
     left: 200px;
-    right: 200px;
+    width: 200px;
     bottom: 0;
     
 }
@@ -132,6 +144,7 @@ html, body {
 
 .constraint_slider .histogram_container {
     position: absolute;
+    width: 100%;
     bottom: 0;
     left: 0;
 }
@@ -142,27 +155,29 @@ html, body {
 
 .constraint_slider .total_histogram_container .bar {
     position: absolute;
-    bottom: 0;
+    bottom: 32px;
     left: 0;
     width: 10px;
     background-color: orange;
     opacity: 0.4;
 }
 
-#b1 {
-    left: 0;
-    height: 50px;
+
+.horizontal_lines {
+    position: absolute;
+    width: 100%;
 }
 
-#b2 {
-    left: 12px;
-    height: 60px;
+.horizontal_lines .line {
+    position: absolute;
+    bottom: 0;
+    left: -4px;
+    height: 1px;
+    right: -4px;
+    background-color: black;
+	  opacity: 0.1;
 }
 
-#b3 {
-    left: 24px;
-    height: 80px;
-}
 
 #tree_1 {
     left: 50px;
