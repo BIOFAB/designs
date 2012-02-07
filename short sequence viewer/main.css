@@ -1,0 +1,104 @@
+.mono {
+font-family: monospace;
+}
+
+.seq {
+font-family: sans-serif;
+font-size: 10px;
+z-index: 4;
+}
+
+.label {
+position: absolute;
+background: white;
+bottom: -.6em;
+left: 50%;
+font-size: 12px
+}
+
+.paren {
+position: absolute;
+font-family: sans-serif;
+border-bottom: solid 2px #aaa;
+border-left: solid 1px #aaa;
+border-right: solid 1px #aaa;
+border-bottom-right-radius: 5px;
+border-bottom-left-radius: 5px;
+text-align: center;
+line-height: .8em 
+}
+
+.p1 {
+width: 32.5%;
+left: 0%;
+}
+
+.p2 {
+width: 35%;
+left: 52.5%;
+}
+
+.p3 {
+width: 67.5%;
+left: 25%;
+}
+
+.p4 {
+width: 15%;
+left: 82.5%; 
+}
+
+.l1 {
+height: .4em;
+z-index: 1;
+}
+.l2 {
+height: 1em;
+z-index: 2;
+}
+.l3 {
+height: 1.6em;
+z-index: 3;
+}
+
+.letter {
+width: 2.5%;
+float: left;
+text-align: center;
+z-index: 4;
+}
+
+.t {
+background-color: #F6BBD8 ;
+}
+
+.c {
+background-color: #FFD9C2;
+}
+
+.a {
+background-color: #B4ECDE;
+}
+
+.g {
+background-color: #E4FBBF;
+}
+
+.floatclear {
+clear: both;
+}
+
+.container_a {
+width: 600px;
+position: relative;
+border: 1px solid #AAA;
+border-radius: 3px;
+box-shadow: 1px 1px 7px #ccc inset;
+background-color: white;
+margin: 5px;
+}
+
+.key {
+font-family: sans-serif;
+font-size: 12px;
+}
