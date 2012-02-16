@@ -1,7 +1,4 @@
 
-
-
-
 html, body {
     margin: 0;
     padding: 0;
@@ -17,8 +14,6 @@ html, body {
 .constraint_slider {
     position: relative;
     width: 700px;
-
-    /* Juul new */
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
@@ -49,14 +44,14 @@ html, body {
 }
 
 .constrained_hilight {
-    	position: absolute;
-	top: -3px;
-	bottom: -3px;
-    	left: 0px;
-	right: 0px;
-	background-color: #8EEB00;
-    	box-shadow: 0px 0px 5px #8EEB00;
-	opacity: 0.3;
+    position: absolute;
+	  top: -3px;
+	  bottom: -3px;
+    left: 0px;
+	  right: 0px;
+	  background-color: #8EEB00;
+    box-shadow: 0px 0px 5px #8EEB00;
+	  opacity: 0.3;
 	
 }
 
@@ -118,7 +113,7 @@ html, body {
 .constraint_slider .left_slider .label {
     position: absolute;
     bottom: -13px;
-    left: -18px;
+    left: -22px;
     font-size: 8px;
 }
 
@@ -151,6 +146,8 @@ html, body {
 
 .constraint_slider .total_histogram_container {
     position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .constraint_slider .total_histogram_container .bar {
@@ -158,10 +155,30 @@ html, body {
     bottom: 32px;
     left: 0;
     width: 10px;
-    background-color: orange;
+
+    background-color: #1a82f7;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(orange), to(orange));
+    background-image: -webkit-linear-gradient(top, orange, orange);
+    background-image:    -moz-linear-gradient(top, orange, orange);
+    background-image:     -ms-linear-gradient(top, orange, orange);
+    background-image:      -o-linear-gradient(top, orange, orange);
     opacity: 0.4;
 }
 
+.constraint_slider .constrained_histogram_container {
+    position: absolute;
+    top: 0;
+    left: 1px;
+}
+
+.constraint_slider .constrained_histogram_container .bar {
+    position: absolute;
+    bottom: 32px;
+    left: 0;
+    width: 10px;
+    background-color: green;
+    opacity: 0.3;
+}
 
 .horizontal_lines {
     position: absolute;
@@ -178,84 +195,3 @@ html, body {
 	  opacity: 0.1;
 }
 
-
-#tree_1 {
-    left: 50px;
-    height: 50px;
-}
-
-#tree_2 {
-    left: 70px;
-    height: 40px;
-}
-
-#tree_3 {
-    left: 80px;
-    height: 50px;
-}
-
-#tree_4 {
-    left: 100px;
-    height: 40px;
-}
-
-
-#tree_5 {
-    left: 140px;
-    height: 50px;
-}
-
-#tree_6 {
-    left: 150px;
-    height: 40px;
-}
-
-#tree_15 {
-    left: 220px;
-    height: 50px;
-}
-
-#tree_7 {
-    left: 240px;
-    height: 50px;
-}
-
-#tree_8 {
-    left: 277px;
-    height: 40px;
-}
-
-#tree_9 {
-    left: 285px;
-    height: 50px;
-}
-
-#tree_10 {
-    left: 300px;
-    height: 40px;
-}
-
-#tree_11 {
-    left: 320px;
-    height: 50px;
-}
-
-#tree_12 {
-    left: 360px;
-    height: 40px;
-}
-
-#tree_13 {
-    left: 370px;
-    height: 50px;
-}
-
-#tree_14 {
-    left: 380px;
-    height: 40px;
-}
-
-#tree_16 {
-    left: 400px;
-    height: 40px;
-}

@@ -61,6 +61,7 @@ var ConstraintSlider = {
         this.params = Object.extend({
             histogram_heights: params.heights,
             total_histogram_id: 'total_histogram_'+this.unique,
+            constrained_histogram_id: 'constrained_histogram_'+this.unique,
             node_id: 'constraint_slider_'+this.unique
         }, params || {});
 
@@ -72,9 +73,8 @@ var ConstraintSlider = {
         var widget = $$('#'+this.container_id + ' .constraint_slider')[0];
         this.widget_dimensions = Element.getDimensions(widget);
 
-
-        this.make_histogram_bins = function(data, bin_count) {
-            var i;
+        this.get_data_range = function(data) {
+            
             var min = Number.MAX_VALUE;
             var max = Number.MIN_VALUE;
             for(i=0; i < data.length; i++) {
@@ -85,17 +85,37 @@ var ConstraintSlider = {
                     max = data[i];
                 }
             }
-            var bin_size = (max - min) / bin_count; // TODO ensure float
+
+            return [min, max];
+        };
+
+
+        this.make_histogram_bins = function(data, bin_count, existing_bins) {
+            var i;
+
+            var minmax = this.get_data_range(data); // re-calculate data range
+            var min = minmax[0];
+            var max = minmax[1];
+
+            var bin_size = (max - min) / bin_count;
 
             // create bins
             var bins = [];
             for(i=0; i < bin_count; i++) {
 
-                bins.push({
-                    from: min + bin_size * i,
-                    to: min + bin_size * (i+1),
-                    data: []
-                });
+                if(existing_bins) {
+                    bins.push({
+                        from: existing_bins[i].from,
+                        to: existing_bins[i].to,
+                        data: []
+                    }); 
+                } else {
+                    bins.push({
+                        from: min + bin_size * i,
+                        to: min + bin_size * (i+1),
+                        data: []
+                    }); 
+                }
 
                 // expand last bin up to above the max value
                 if(i == (bin_count - 1)) {
@@ -117,7 +137,7 @@ var ConstraintSlider = {
         };
 
 
-        this.init_histogram = function(bins, data_count, y_axis_max, max_height, horizontal_lines) {
+        this.init_histogram = function(container_id, bins, data_count) {
 
             if(!bins || (bins.length == 0)) {
                 return null;
@@ -134,7 +154,7 @@ var ConstraintSlider = {
             var pixels_per_data_entries = null;
 
             // set the normalization factor
-            if(y_axis_max == 'dynamic') { // normalize based on a specified value
+            if(this.params.y_axis_max == 'dynamic') { // normalize based on a specified value
                 var y_axis_max = 0;
                 for(i=0; i < bins.length; i++) {
                     if(bins[i].data.length > tallest_bin) {
@@ -142,29 +162,19 @@ var ConstraintSlider = {
                     }
                 }
             }
-            pixels_per_data_entry = max_height / y_axis_max;
+            pixels_per_data_entry = this.params.histogram_max_height / this.params.y_axis_max;
 
             // center the histogram
             $(this.params.total_histogram_id).style.left = histogram_left_offset / 2 + 'px';
 
+            // append the nodes
             var node;
             for(i=0; i < bins.length; i++) {
 
                 height = Math.round(pixels_per_data_entry * bins[i].data.length);
                 node = this.make_histogram_bar(histogram_bar_width, height);
                 node.style.left = (i * histogram_bar_width) + (i * histogram_bar_spacing) + 'px';
-                $(this.params.total_histogram_id).appendChild(node);
-            }
-
-            var horizontal_lines_node = $$('#'+this.container_id + ' .horizontal_lines')[0];
-
-            // horizontal lines
-            if(horizontal_lines) {
-                var line_spacing = max_height / 3; // TODO remove hard-coded 3
-                for(i=0; i < 3; i++) {
-                    var line = this.make_horizontal_line(line_spacing * (i+1));
-                    horizontal_lines_node.appendChild(line);
-                }
+                $(container_id).appendChild(node);
             }
         };
 
@@ -212,23 +222,6 @@ var ConstraintSlider = {
             Event.stop(e); // stop event propagation
         };
 
-        this.right_slider_mousemove = function(e) {
-            var point = Event.pointer(e);
-            var left = Element.cumulativeOffset(this.constrained_area).left;
-            var new_width = point.x - left
-
-            // keep it within the boundaries of the widget
-            if(new_width < 13) { // TODO remove hardcoded number
-                new_width = 13;
-            }
-            var new_right = left + new_width;
-            if(new_right > (this.widget_offset.left + this.widget_dimensions.width) - 2) { // TODO hardcoded -2
-                new_width = (this.widget_offset.left + this.widget_dimensions.width) - 2 - left;
-            }
-
-            this.constrained_area.style.width = new_width + 'px';
-        };
-
         this.left_slider_mousemove = function(e) {
             var point = Event.pointer(e);
             var left = Element.cumulativeOffset(this.constrained_area).left;
@@ -254,8 +247,27 @@ var ConstraintSlider = {
 
             this.constrained_area.style.left = new_left + 'px';
             this.constrained_area.style.width = new_width + 'px';
+            this.slider_changed();
         };
 
+
+        this.right_slider_mousemove = function(e) {
+            var point = Event.pointer(e);
+            var left = Element.cumulativeOffset(this.constrained_area).left;
+            var new_width = point.x - left
+
+            // keep it within the boundaries of the widget
+            if(new_width < 13) { // TODO remove hardcoded number
+                new_width = 13;
+            }
+            var new_right = left + new_width;
+            if(new_right > (this.widget_offset.left + this.widget_dimensions.width) - 2) { // TODO hardcoded -2
+                new_width = (this.widget_offset.left + this.widget_dimensions.width) - 2 - left;
+            }
+
+            this.constrained_area.style.width = new_width + 'px';
+            this.slider_changed();
+        };
 
         this.constrained_area_mousemove = function(e) {
             var point = Event.pointer(e);
@@ -274,6 +286,7 @@ var ConstraintSlider = {
             }
 
             this.constrained_area.style.left = new_left + 'px';
+            this.slider_changed();
         };
 
 
@@ -294,6 +307,76 @@ var ConstraintSlider = {
             return node;
         };
 
+        this.slider_changed = function() {
+
+            var outer_node = $$('#'+this.container_id + ' .constraint_slider')[0];
+            var total_width = Element.getDimensions(outer_node).width - 2; // TODO hardcoded 2
+            var constrained_area_node = $$('#'+this.container_id + ' .constrained_area')[0];
+            var left = Element.cumulativeOffset(constrained_area_node).left - Element.cumulativeOffset(outer_node).left;
+            var width = Element.getDimensions(constrained_area_node).width;
+
+            var constrained_size = width - left;
+
+            var left_ratio = left / total_width;
+            var right_ratio = (left + width) / total_width;
+
+            var minmax = this.get_data_range(this.params.data);
+            var min = minmax[0];
+            var max = minmax[1];
+
+            var range = max - min;
+
+            this.constrain_data_min = left_ratio * range + min;
+            this.constrain_data_max = right_ratio * range + min;
+            
+            this.update_min_max_labels();
+
+            this.update_constrained_histogram();
+
+        };
+
+
+        this.update_min_max_labels = function() {
+            
+            var min_label = $$('#'+this.container_id + ' .constrained_area .left_slider .label')[0];
+            var max_label = $$('#'+this.container_id + ' .constrained_area .right_slider .label')[0];
+            
+            min_label.innerHTML = Math.round(this.constrain_data_min * 100) / 100;
+            max_label.innerHTML = Math.round(this.constrain_data_max * 100) / 100;
+
+        };
+ 
+        this.update_constrained_histogram = function() {
+
+
+
+            this.constrained_data = [];
+            var i;
+            for(i=0; i < this.params.data.length; i++) {
+                if((this.params.data[i] >= this.constrain_data_min) && (this.params.data[i] <= this.constrain_data_max)) {
+                    this.constrained_data.push(this.params.data[i]);
+                }
+            }
+
+            this.constrained_bins = this.make_histogram_bins(this.constrained_data, this.params.bin_count, this.bins);
+
+            $(this.params.constrained_histogram_id).innerHTML = '';
+            this.init_histogram(this.params.constrained_histogram_id, this.constrained_bins, this.constrained_data.length);
+
+        };
+
+        this.draw_axis_lines = function() {
+            
+            var horizontal_lines_node = $$('#'+this.container_id + ' .horizontal_lines')[0];
+            
+            var line_spacing = this.params.histogram_max_height / 3; // TODO remove hard-coded 3
+            for(i=0; i < 3; i++) {
+                var line = this.make_horizontal_line(line_spacing * (i+1));
+                horizontal_lines_node.appendChild(line);
+            }
+
+        }
+
         this.make_horizontal_line = function(bottom) {
             var node = document.createElement('DIV');
             node.className = 'line';
@@ -301,12 +384,20 @@ var ConstraintSlider = {
             return node;
         };
 
-
+        // create main histogram
         this.bins = this.make_histogram_bins(params.data, params.bin_count);
+        this.init_histogram(this.params.total_histogram_id, this.bins, params.data.length);
 
-        this.init_histogram(this.bins, params.data.length, params.y_axis_max, params.histogram_max_height, this.params.horizontal_lines);
+        this.draw_axis_lines();
+        
+        this.slider_changed();
         this.init_dragging();
     }
+
+
+
+
+
 
 };
 
