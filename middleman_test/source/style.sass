@@ -1,0 +1,15 @@
+/* style.sass
+
+=rounded($side, $radius: 10px)
+  border-#{$side}-radius: $radius
+  -moz-border-radius-#{$side}: $radius
+  -webkit-border-#{$side}-radius: $radius
+
+#navbar li
+  +rounded(top)
+
+#footer
+  +rounded(top, 5px)
+
+#sidebar
+  +rounded(left, 8px)
