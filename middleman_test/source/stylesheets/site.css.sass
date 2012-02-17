@@ -1,297 +1,292 @@
-=smallshadow
-	-moz-box-shadow:    1px 1px 3px #ddd
-	-webkit-box-shadow: 1px 1px 3px #ddd
-	box-shadow:         1px 1px 3px #ddd
+@mixin smallshadow {
+  -moz-box-shadow: 1px 1px 3px #dddddd;
+  -webkit-box-shadow: 1px 1px 3px #dddddd;
+  box-shadow: 1px 1px 3px #dddddd; }
 
-=medshadow
-	-moz-box-shadow:    1px 1px 7px #ddd
-	-webkit-box-shadow: 1px 1px 7px #ddd
-	box-shadow:         1px 1px 7px #ddd
+@mixin medshadow {
+  -moz-box-shadow: 1px 1px 7px #dddddd;
+  -webkit-box-shadow: 1px 1px 7px #dddddd;
+  box-shadow: 1px 1px 7px #dddddd; }
 
-=inshadow
-	-moz-box-shadow:    1px 1px 3px #ddd inset
-	-webkit-box-shadow: 1px 1px 3px #ddd inset
-	box-shadow:         1px 1px 3px #ddd inset
+@mixin inshadow {
+  -moz-box-shadow: 1px 1px 3px #dddddd inset;
+  -webkit-box-shadow: 1px 1px 3px #dddddd inset;
+  box-shadow: 1px 1px 3px #dddddd inset; }
 
-=border_a
-	border: 1px solid #aaa	
+@mixin border_a {
+  border: 1px solid #aaaaaa; }
 
-=smallbox_border
-	+border_a
-	border-radius: 3px
-	background: white
+@mixin smallbox_border {
+  @include border_a;
+  border-radius: 3px;
+  background: white; }
 
-=medbox_border
-	+border_a
-	border-bottom-right-radius: 5px
-	background: white	
+@mixin medbox_border {
+  @include border_a;
+  border-bottom-right-radius: 5px;
+  background: white; }
 
-=bar_border
-	+inshadow	
-	+border_a
+@mixin bar_border {
+  @include inshadow;
+  @include border_a; }
 
-=circle
-	+inshadow
-	+border_a
-	border-radius: 500px
+@mixin circle {
+  @include inshadow;
+  @include border_a;
+  border-radius: 500px; }
 
-=smallfont
-	font-size: 11px
-	font-family: sans-serif
+@mixin smallfont {
+  font-size: 11px;
+  font-family: sans-serif; }
 
-=medfont
-	font-size: 13px
-	font-family: sans-serif
+@mixin medfont {
+  font-size: 13px;
+  font-family: sans-serif; }
 
-=paren_border($orient)
-	border-#{$orient}: solid 2px #aaa
-	border-left: solid 1px #aaa
-	border-right: solid 1px #aaa
-	-webkit-border-#{$orient}-left-radius: 5px
-	-webkit-border-#{$orient}-right-radius: 5px
-	-moz-border-radius-#{$orient}left: 5px
-	-moz-border-radius-#{$orient}right: 5px
-	border-#{$orient}-left-radius: 5px
-	border-#{$orient}-right-radius: 5px
+@mixin paren_border($orient) {
+  border-#{$orient}: solid 2px #aaaaaa;
+  border-left: solid 1px #aaaaaa;
+  border-right: solid 1px #aaaaaa;
+  -webkit-border-#{$orient}-left-radius: 5px;
+  -webkit-border-#{$orient}-right-radius: 5px;
+  -moz-border-radius-#{$orient}left: 5px;
+  -moz-border-radius-#{$orient}right: 5px;
+  border-#{$orient}-left-radius: 5px;
+  border-#{$orient}-right-radius: 5px; }
 
-=paren_label
-	+smallfont	
-	background: white
-	text-align: center
-	display: inline-block
-	margin-left: auto
-	margin-right: auto	
+@mixin paren_label {
+  @include smallfont;
+  background: white;
+  text-align: center;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto; }
 
-/*Gauge indicators*/
+/*Gauge indicators */
 
-$ov_color: #8eeb00
-$utr_color: #4e5a66
-$prm_color: #43ee9a
+$ov_color: #8eeb00;
+$utr_color: #4e5a66;
+$prm_color: #43ee9a;
 
-$sd_blur: 5px
-$sd_opacity: .3
+$sd_blur: 5px;
+$sd_opacity: 0.3;
 
-.gauge_pointer
-	height: 100%
-	margin:
-		left: auto
-		right: auto
-	//width: 6px //override in hard copy with pointer width
-	vertical-align: baseline
+.gauge_pointer {
+  height: 100%;
+  margin: {
+    left: auto;
+    right: auto; };
+  //width: 6px //override in hard copy with pointer width
+  vertical-align: baseline; }
 
-.gauge_sd
-	opacity: $sd_opacity
-	height: 100%
-	width: 100%
-	position: absolute
+.gauge_sd {
+  opacity: $sd_opacity;
+  height: 100%;
+  width: 100%;
+  position: absolute; }
 
-=ov_indicator 
-	height: 100%
-	position: absolute
-	//width: 0 //overide dynamically with sd percentage
-	//left: 0 //overide dynamically with performance minus half of sd percentage
+@mixin ov_indicator {
+  height: 100%;
+  position: absolute;
+  //width: 0 //overide dynamically with sd percentage
+  //left: 0 //overide dynamically with performance minus half of sd percentage
+  .gauge_pointer {
+    background-color: $ov_color; }
+  .gauge_sd {
+    background-color: $ov_color;
+    box-shadow: 0px 0px 5px $ov_color; } }
 
-	.gauge_pointer
-		background-color: $ov_color
+@mixin prm_indicator {
+  @include ov_indicator;
+  .gauge_pointer {
+    background-color: $prm_color; }
+  .gauge_sd {
+    background-color: $prm_color;
+    box-shadow: 0px 0px 5px $prm_color; } }
 
-	.gauge_sd
-		background-color: $ov_color
-		box-shadow: 0px 0px 5px $ov_color
+@mixin utr_indicator {
+  @include ov_indicator;
+  .gauge_pointer {
+    background-color: $utr_color; }
+  .gauge_sd {
+    background-color: $utr_color;
+    box-shadow: 0px 0px 5px $utr_color; } }
 
-=prm_indicator 
-	+ov_indicator
-	.gauge_pointer
-		background-color: $prm_color
-	.gauge_sd
-		background-color: $prm_color
-		box-shadow: 0px 0px 5px $prm_color
-		
-=utr_indicator 
-	+ov_indicator
-	.gauge_pointer
-		background-color: $utr_color
-	.gauge_sd
-		background-color: $utr_color
-		box-shadow: 0px 0px 5px $utr_color
+/*Gauge Lettering */
 
-/*Gauge Lettering*/
+.t, .c, .a, .g {
+  float: left;
+  text-align: center;
+  padding: 0 0.1em;
+  line-height: 0.9em;
+  @include smallfont; }
 
-.t, .c, .a, .g
-	float: left
-	text-align: center
-	padding: 0 .1em
-	line-height: .9em
-	+smallfont
+.t {
+  background-color: #f6bbd8; }
 
-.t
-	background-color: #F6BBD8
+.c {
+  background-color: #ffd9c2; }
 
-.c
-	background-color: #FFD9C2
+.a {
+  background-color: #b4ecde; }
 
-.a
-	background-color: #B4ECDE
+.g {
+  background-color: #e4fbbf; }
 
-.g
-	background-color: #E4FBBF
+.floatclear {
+  clear: both; }
 
-.floatclear
-	clear: both
+/*Ten-Step Rulers */
+.ruler {
+  height: 16px;
+  .tic {
+    border-left: 2px solid #aaaaaa;
+    margin-right: -2px;
+    margin-top: -2px;
+    margin-bottom: 10px;
+    float: left;
+    width: 10%;
+    .tic_label {
+      @include smallfont;
+      background: white;
+      position: relative;
+      margin-left: -1em;
+      bottom: -0.5em; }
+    &.first {
+      .tic_label {
+        margin-left: -0.2em; } }
+    &.last {
+      width: 0;
+      margin-left: -2px;
+      .tic_label {
+        margin-left: -2.3em; } } } }
 
-/*Ten-Step Rulers*/
-.ruler	
-	height: 16px
-	.tic
-		border-left: 2px solid #aaa
-		margin-right: -2px
-		margin-top: -2px		
-		margin-bottom: 10px
-		float: left
-		width: 10%
-		.tic_label
-			+smallfont		
-			background: white						
-			position: relative			
-			margin-left: -1em
-			bottom: -.5em			
-		&.first
-			.tic_label
-				margin-left: -.2em
-		&.last
-			width: 0
-			margin-left: -2px	
-			.tic_label
-				margin-left: -2.3em
-	
-/*Dot Gauges*/
-.dotgauge
-	.step
-		float: left
-		width: 10%
-		.dot
-			+circle
-			height: 10px
-			width: 10px
-			margin: auto
+/*Dot Gauges */
+.dotgauge {
+  .step {
+    float: left;
+    width: 10%;
+    .dot {
+      @include circle;
+      height: 10px;
+      width: 10px;
+      margin: auto; } } }
 
-/*List Widgets*/
-.list_widget
-	+medbox_border
-	+medshadow
-	//temporary width- in final will fit to space
-	width: 600px		
-	padding: 8px
-	.top
-		clear: both
-		display: inline-block
-		width: 100%
-	.list_widget_label
-		+medfont
-		margin-bottom: 8px
-		float: left
+/*List Widgets */
+.list_widget {
+  @include medbox_border;
+  @include medshadow;
+  //temporary width- in final will fit to space
+  width: 600px;
+  padding: 8px;
+  .top {
+    clear: both;
+    display: inline-block;
+    width: 100%; }
+  .list_widget_label {
+    @include medfont;
+    margin-bottom: 8px;
+    float: left; }
+  .reliability {
+    float: right;
+    margin-bottom: 8px;
+    .reliability_label {
+      @include smallfont;
+      float: left;
+      margin-right: 0.5em; }
+    .dotgauge {
+      width: 140px;
+      float: left; } }
+  .performance {
+    position: relative;
+    .bar {
+      position: relative;
+      @include bar_border;
+      height: 20px;
+      .bar_label {
+        @include medfont;
+        position: absolute;
+        top: 2px;
+        left: 0.5em;
+        color: #666666; }
+      .overall {
+        @include ov_indicator;
+        left: 20%;
+        width: 5%;
+        .gauge_pointer {
+          width: 6px; } }
+      .promoter {
+        @include prm_indicator;
+        left: 10%;
+        width: 10%;
+        .gauge_pointer {
+          width: 3px; } }
+      .utr {
+        @include utr_indicator;
+        left: 56%;
+        width: 15%;
+        .gauge_pointer {
+          width: 3px; } } } } }
 
-	.reliability
-		float: right
-		margin-bottom: 8px
-		.reliability_label
-			+smallfont
-			float: left
-			margin-right: .5em
-		.dotgauge
-			width: 140px
-			float: left
+/*Promoter and 5'UTR diagram Widgets */
 
-	.performance
-		position: relative
-		.bar
-			position: relative
-			+bar_border
-			height: 20px
-			.bar_label
-				+medfont
-				position: absolute
-				top: 2px				
-				left: .5em
-				color: #666
-			
-			.overall
-				+ov_indicator
-				left: 20%
-				width: 5%
-				.gauge_pointer
-					width: 6px
+.diagram {
+  @include medbox_border;
+  @include medshadow;
+  height: 54px;
+  display: inline-block;
+  position: relative;
+  padding: 2px 6px;
+  .seq {
+    position: relative;
+    float:left;
+    .label {
+      position: absolute;
+      width: 100%;
+      top: -19px;
+      color: #888;
+      font-size: 9px;
+      text-align: center;  }
 
-			.promoter
-				+prm_indicator
-				left: 10%
-				width: 10%
-				.gauge_pointer
-					width: 3px
+    .box {
+      @include smallbox_border;
+      @include smallshadow;
+      @include smallfont;
+      padding: 2px;
+      margin: 3px;
+      float: left;
+      margin-top: -7px;
+      z-index: 3; }
+  }
+  .line {
+    @include smallbox_border;
+    @include smallshadow;
+    height: 3px;
+    position: relative;
+    padding: 0px 5px;
+    margin: 8px 0px;
+    margin-top: 20px;
+    display: inline-block;
+    z-index: 2; }
 
-			.utr
-				+utr_indicator
-				left: 56%
-				width: 15%
-				.gauge_pointer
-					width: 3px
-		
-/*Promoter and 5'UTR Diagram Widgets*/
+  .bottomparen {
+    @include paren_border(bottom);
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 4px;
+    height: 8px;
+    float: left;
+    z-index: 1;
+    .parenlabel {
+      @include paren_label;
+      position: relative;
+      bottom: 2px; } }
 
-.diagram
-	+medbox_border	
-	+medshadow	
-	display: inline-block
-	position: relative
-	padding: 2px 6px
-	.box
-		+smallbox_border
-		+smallshadow
-		+smallfont	
-		padding: 2px
-		margin: 3px
-		float: left
-		margin-top: -7px
-		z-index: 3
+  .widgetlabel {
+    @include medfont;
+    font-size: 10px;
+    background: white; } }
 
-	.line
-		+smallbox_border
-		+smallshadow	
-		height: 3px
-		position: relative
-		padding: 0px 5px
-		margin: 8px 0px
-			bottom: 16px
-		display: inline-block	
-		z-index: 2	
-
-	.bottomparen
-		+paren_border(bottom)
-		display: inline	
-		padding-left: 10px
-		padding-right: 10px	
-		margin-top: 4px
-		height: 8px
-		float: left
-		z-index: 1
-		.parenlabel
-			+paren_label
-			position: relative
-			bottom: -.3em
-
-	.topparen
-		+paren_border(top)
-		height: 10px
-		position: relative
-		bottom: 20px
-		display: inline-block
-		.parenlabel
-			+paren_label
-			position: relative
-			top: -.5em
-				
-	.widgetlabel
-		+medfont
-		background: white
-
-#slider_rent
-	width: 400px
+#slider_rent {
+  width: 400px; }
