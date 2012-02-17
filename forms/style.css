@@ -1,0 +1,62 @@
+body {
+      font: 80% "Trebuchet MS", verdana, helvetica, arial, sans-serif;
+    }
+    input {
+      display: block;
+      margin: 0 0 10px;
+      border: 1px solid #666;
+      color: #999;
+    }
+    legend {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      color: #666;
+    }
+    select {
+      display: block;
+      width: 300px;
+    }
+    select.replaced {
+      display: none;
+    }
+    ul.selectReplacement {
+      background: blue;
+      margin: 0;
+      padding: 0;
+      height: 1.65em;
+      width: 300px;
+    }
+    ul.selectReplacement li {
+      background: #cf5a5a;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+      font-size: 11px;
+      line-height: 1.7em;
+      list-style: none;
+      margin: 0;
+      padding: 1px 12px;
+      width: 276px;
+    }
+    ul.selectOpen li {
+      display: block;
+    }
+    ul.selectReplacement li.selected {
+      background: red;
+      color: #fff;
+      display: block;
+    }
+    ul.selectOpen li.selected {
+      background: #9e0000;
+      display: block;
+    }
+    ul.selectOpen li:hover,
+    ul.selectOpen li.hover,
+    ul.selectOpen li.selected:hover {
+      background: #9e0000;
+      color: #fff;
+    }

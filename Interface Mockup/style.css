@@ -1,0 +1,591 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+#container {
+    position: relative;    
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow: auto;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+
+
+#debug {
+display: none;
+}
+
+/*LIST WIDGET*/
+.list {
+margin-top: 100px;
+width: 600px;
+}
+
+.list_widget {
+position: relative;
+background-color: white;
+border-bottom-right-radius:5px;    
+border: 1px solid #aaa;
+box-shadow: 2px 2px 3px #eee;
+height: 60px;
+padding: 10px;
+margin-bottom: 8px;
+}
+
+.list_widget .eou {
+margin-bottom: 6px;
+}
+
+.list_widget .eou .label{
+font-size: 12px;
+}
+
+.list_widget .performance {
+width: 110%;
+}
+
+.list_widget .bar {
+width: 90%;
+height:10px;
+position: relative;
+top: 3px;
+border: 1px solid #aaa;
+border-radius: 0px;    
+box-shadow: 1px 1px 3px #eee inset;
+
+}
+
+.list_widget .performance .tic {
+width: 9%;
+height:10px;
+margin-right: -2px;
+border-left: solid 2px #bbb;
+float: left;
+}
+
+.list_widget .label {
+font-size: 10px;
+}
+
+.list_widget .performance .ruler .label {
+position: relative;
+background: white;
+left: -10px;
+bottom: -5px;
+width: 50%;
+}
+
+.list_widget .performance .ruler .label.first {
+left: -5px;
+}
+
+.list_widget .performance .ruler .label.last {
+left: -20px;
+}
+
+.list_widget .performance .overall {
+height: 100%;
+position: relative;
+left: 20%;
+width: 5%;
+}
+
+.list_widget .performance .overall .pointer  {
+position: relative;
+margin-left:auto;
+margin-right:auto;
+width: 6px;
+height: 100%;
+vertical-align: baseline;
+background-color: #8EEB00;
+opacity: 1.5;
+
+}
+
+.list_widget .performance .5utr {
+height: 100%;
+position: relative;
+left: 60%;
+width: 5%;
+}
+
+.list_widget .performance .5utr .pointer  {
+position: relative;
+margin-left:auto;
+margin-right:auto;
+width: 6px;
+height: 100%;
+vertical-align: baseline;
+background-color: black;
+opacity: 1.5;
+
+}
+
+.list_widget .performance .overall .sd {
+position: absolute;
+background-color: #8EEB00;
+box-shadow: 0px 0px 5px #8EEB00;
+opacity: 0.3;
+
+height: 100%;
+width: 100%;
+}
+
+.list_widget .reliability {
+position: absolute;
+top: 0px;
+right: 0px;
+width:200px
+}
+
+.list_widget .reliability .label {
+display: inline;
+}
+
+.list_widget .reliability .tic {
+width: 9%;
+height: 20px;
+float: left;
+}
+
+.list_widget .reliability .dot {
+border: 1px solid #aaa;
+box-shadow: 1px 1px 3px #eee inset;
+width: 10px;
+height: 10px;
+position: relative;
+top: 3px;
+border-radius: 400px;
+margin-left: 0;
+margin-right: auto;
+
+}
+
+/*LIST WIDGET OPEN*/
+
+.list_widget.open {
+height: 110px
+}
+
+/*FIXED*/
+.fixed {
+position: fixed;
+height: 100%;
+}
+
+.inner_fixed {
+position: absolute;
+height: 100%;
+}
+
+/*SLIDER*/
+.header {
+background-color: #fff;
+z-index: 100;
+position: relative;
+top: 0px;
+height: 96px;
+width: 1000px;
+left: auto;
+right: auto;
+border-bottom: dotted 1px
+}
+
+.dynamic_slider .constraint_slider {
+    position: relative;
+    top: 60px;
+    width: 700px;
+    z-index: 101;
+
+    /* Juul new */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+}
+
+.dynamic_slider .constraint_slider .bar_container {
+    position: relative;
+    height: 23px;
+    border: 1px solid #aaa;
+    box-shadow: 1px 1px 5px #ccc inset;
+    background-color: white;
+}
+
+.dynamic_slider .constraint_slider .constrained_area {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    width: 200px;
+    bottom: 0;
+    
+}
+
+.dynamic_slider .constrained_hilight {
+        position: absolute;
+    top: -3px;
+    bottom: -3px;
+        left: 0px;
+    right: 0px;
+    background-color: #36BBCE;
+        box-shadow: 0px 0px 5px #36BBCE;
+    opacity: 0.3;
+    
+}
+
+.dynamic_slider .constraint_slider .slider {
+    position: absolute;
+    top: -9px;
+    bottom: -5px;
+    width: 11px;
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 3px;    
+    box-shadow: 1px 1px 3px #ccc, 0px -1px 2px #ccc inset;
+
+}
+
+.dynamic_slider .constraint_slider .slider:hover {
+    background-color: #fafafa;
+}
+
+.dynamic_slider .constraint_slider .slider:active {
+    box-shadow: 0px -1px 2px #ccc inset;
+    
+}
+.dynamic_slider .constraint_slider .left_slider {
+    left: 0;
+}
+
+.dynamic_slider .constraint_slider .right_slider {
+    right: 0;
+}
+
+/*.dynamic_slider .constraint_slider .angle_line .vertical_line {
+    position: absolute;
+    bottom: -9px;
+    left: 7px;
+    width: 1px;
+    height: 7px;
+    background-color: black;
+}*/
+
+.dynamic_slider .constraint_slider .left_slider .angle_line .horizontal_line {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    width: 7px;
+    height: 1px;
+    background-color: black;
+}
+
+.dynamic_slider .constraint_slider .right_slider .angle_line .horizontal_line {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    width: 7px;
+    height: 1px;
+    background-color: black;
+}
+
+.dynamic_slider .constraint_slider .left_slider .label {
+    position: absolute;
+    bottom: 6px;
+    right: 20px;
+    font-size: 10px;
+    background-color: white;
+}
+
+.dynamic_slider .constraint_slider .right_slider .label {
+    position: absolute;
+    bottom: 6px;
+    left: 20px;
+    font-size: 10px;
+    background-color: white;
+}
+
+.dynamic_slider .constraint_slider .tree {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    background-color: gray;
+
+}
+
+.dynamic_slider .constraint_slider .forest_of_divs .active {
+    background-color: red;
+    
+}
+
+.dynamic_slider .constraint_slider .histogram_container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.dynamic_slider .constraint_slider .total_histogram_container {
+    position: absolute;
+}
+
+.dynamic_slider .constraint_slider .total_histogram_container .bar {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 10px;
+    
+   background-color: #1a82f7;
+  
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF5640), to(#A43DD4));
+   background-image: -webkit-linear-gradient(top, #FF5640, #A43DD4);
+   background-image:    -moz-linear-gradient(top, #FF5640, #A43DD4);
+   background-image:     -ms-linear-gradient(top, #FF5640, #A43DD4);
+   background-image:      -o-linear-gradient(top, #FF5640, #A43DD4);
+
+    opacity: 0.4;
+}
+
+
+.dynamic_slider .horizontal_lines {
+    position: absolute;
+    width: 100%;
+}
+
+.dynamic_slider .horizontal_lines .line {
+    position: absolute;
+    bottom: 0;
+    left: -4px;
+    height: 1px;
+    right: -4px;
+    background-color: black;
+      opacity: 0.1;
+}
+
+/*CONTROL PANEL*/
+.cpanel {
+height: 100%;
+width: 390px;
+float: right;
+border-left: 1px dotted black;
+position: relative;
+overflow: auto;
+}
+
+.cpanel .container {
+overflow: auto;
+}
+
+.cpanel .bar {
+position: relative;
+padding: 2px 5px;
+border-bottom: 1px dotted black;
+font-size: 15px;
+}
+
+.cpanel .spacer {
+position: relative;
+height: 200px;
+bottom: 0px;
+}
+
+.bar .label {
+display: inline;
+}
+
+.bar .menu {
+display: inline;
+float: right;
+}
+
+.constraint {
+height: 70px;
+border-bottom-right-radius:5px;    
+border: 1px solid #aaa;
+box-shadow: 2px 2px 3px #eee;
+padding: 4px 8px;
+margin-left: 8px;
+margin-top: 8px;
+}
+
+.constraint .label {
+position: absolute;
+font-size: 12px;
+}
+
+.hole {
+position: absolute;
+float: right;
+top: 0px;
+box-shadow: 2px 2px 3px #eee inset !important;
+}
+
+/*CART*/
+.cart {
+position: absolute;
+bottom: 0px;
+height: 100px;
+width: 100%;
+border-top: 1px dotted black;
+background: white;
+z-index: 1;
+}
+
+/*DIAGRAM*/
+.diagram {
+width: 230px;
+height: 40px;
+border: 1px solid #AAA;
+border-radius: 3px;
+box-shadow: 1px 1px 7px #ccc inset;
+background-color: white;
+margin-top: 20px;
+display: inline-block;
+}
+
+.diagram .line {
+background-color: white;
+position: relative; 
+top: 6px;
+height:3px; 
+border: 1px solid #aaa;
+border-radius: 3px;    
+box-shadow: 1px 1px 3px #ddd , 0px -1px 1px #eee inset;
+width:98%;
+margin-right: auto;
+margin-left: auto;
+}
+
+.diagram .container {
+margin-left: 5px;
+margin-right: 5px;
+}
+
+.diagram .label {
+font-size: 10px;
+}
+
+.diagram .seq {
+display: inline;
+float: left;
+margin-top: -8px;
+}
+
+.diagram .box {
+border: 1px solid #aaa;
+text-align: center;
+border-radius: 3px;    
+box-shadow: 1px 1px 3px #ccc, 0px -1px 2px #ccc inset;
+background-color: white;
+padding-top: 1px;
+padding-bottom: 1px;
+padding-left: 3px;
+padding-right: 3px; 
+}
+
+.diagram .paren { 
+display: inline;
+float: left;
+margin-left:4px;
+margin-right: 4px;
+margin-top: 5px;
+border-bottom: solid 2px #aaa;
+border-left: solid 1px #aaa;
+border-right: solid 1px #aaa;
+border-bottom-right-radius: 3px;
+border-bottom-left-radius: 3px;
+}
+
+.diagram .paren .label {
+margin-left: 5px;
+margin-right: 5px;
+margin-bottom: -10px;
+padding-left: 5px;
+padding-right: 5px;
+background: white;
+}
+
+.diagram .tss {
+display: inline;
+float: left;
+margin-top: -8px;
+}
+
+.diagram.promoter {
+
+}
+
+.diagram.5utr {
+
+}
+
+/*MINIWIDGET*/
+.miniwidget .label {
+position: relative;
+padding: none;
+border-bottom: none;
+font-size: 15px;
+}
+
+.miniwidget {
+height: 43px;
+width: 100px;
+padding: 5px;
+margin: 8px;
+border-bottom-right-radius:5px;    
+border: 1px solid #aaa;
+box-shadow: 2px 2px 3px #eee;
+position: relative;
+}
+
+.miniwidget .label {
+font-size: 10px;
+padding: 0px;
+}
+
+.miniwidget .performance .bar {
+width: 90%;
+height:10px;
+position: relative;
+top: 3px;
+border: 1px solid #aaa;
+border-radius: 0px;    
+box-shadow: 1px 1px 3px #eee inset;
+}
+
+.miniwidget .reliability {
+position: relative;
+margin-top: 5px;
+}
+
+.miniwidget .reliability .label {
+display: inline;
+}
+
+.miniwidget .reliability .tic {
+width: 9%;
+height: 20px;
+float: left;
+}
+
+.miniwidget .reliability .dot {
+border: 1px solid #aaa;
+box-shadow: 1px 1px 3px #eee inset;
+width: 6px;
+height: 6px;
+position: relative;
+top: 3px;
+border-radius: 400px;
+margin-left: 0;
+margin-right: auto;
+
+}

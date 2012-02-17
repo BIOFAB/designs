@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Slider widget</title>
+
+      <script id='constraint_slider_template' type='text/x-dot-template'>
+
+        <div id="{{=it.node_id}}" class='constraint_slider'>
+          <div class='histogram_container'>
+            <!-- horizontal lines and stuff -->
+            <div class='horizontal_lines'></div>
+            <!-- histogram for all items -->
+            <div id="{{=it.total_histogram_id}}" class='total_histogram_container'></div>
+            <!-- histogram for constrained items only -->
+            <div class='constrained_histogram_container'>
+              
+            </div>
+          </div>
+          <div class='bar_container'>
+            <div class='constrained_area'>
+              <div class='constrained_hilight'></div>
+			  <div class='slider left_slider'>
+                <div class='label_container'>
+                  <div class='angle_line'>
+                    <div class='vertical_line'></div>
+                    <div class='horizontal_line'></div>
+                  </div>
+                  <div class='label'>min</div>
+                </div>
+              </div>
+              <div class='slider right_slider'>
+                <div class='label_container'>
+                  <div class='angle_line'>
+                    <div class='vertical_line'></div>
+                    <div class='horizontal_line'></div>
+                  </div>
+                </div>
+                <div class='label'>max</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </script>
+
+
+      <link rel='stylesheet' type='text/css' href='style.css' />
+
+      <script type='text/javascript' src='prototype.js'></script>
+      <script type='text/javascript' src='doT.js'></script>
+
+      <script type='text/javascript' src='ConstraintSlider.js'></script>
+
+      <script type='text/javascript' src='main.js'></script>
+      
+
+
+      <script type='text/javascript'>
+
+        function page_init() {
+
+          ConstraintSlider.init();
+
+          var data_count = 1000;
+          var data = []
+          var i;
+          for(i=0; i < data_count; i++) {
+            data.push(Math.random() * 10);
+          }
+        
+          var slider = ConstraintSlider.create('dynamic_slider', {
+            data: data,
+            bin_count: 25,
+            histogram_max_height: 60,
+            y_axis_max: 60, // Can also be 'dynamic'. If you specify this, then you _must_not_ have any bins with more entries than y_axis_max. If you do, the widget will exceed histogram_max_height.
+            horizontal_lines: true
+});
+          
+        }
+
+      </script>
+
+    </head>
+    <body onload='page_init()'>
+
+		<div id='container'>
+			<div class="fixed">
+				<div class="inner_fixed">
+					<div class='header'>
+						<div class="dynamic_slider" id='dynamic_slider'></div>
+					</div>
+					<div class="cpanel">
+						<div class="bar">
+						<div class="label">Constraints</div>
+						<div class="menu">Add New</div>
+						</div>
+						<div class="container">
+							<div class="constraint c1">
+								<div class="label">Works with:</div>
+								<div class="miniwidget hole">
+								</div>
+							</div>
+							<div class="constraint c1">
+								<div class="label">Works with:</div>
+								<div class="miniwidget hole">
+								</div>
+							</div>
+							<div class="constraint c2">
+								<div class="label">Custom sequence</div>
+								<form>
+								<input type="text" name="firstname" /><br />
+								<input type="radio" name="sex" value="male" />Must contain<br />
+								<input type="radio" name="sex" value="female" />Must not contain
+								</form>
+							</div>
+							
+						</div>
+						<div class="spacer"></div>
+					</div>
+					<div class="cart">
+							<div class="label">Save for later</div>
+							<div class="miniwidget">
+								<div class='label'>AK34-56B</div>
+								<div class="performance">
+									<div class='bar'>
+										<div class='overall'>
+											<div class='sd'></div>
+											<div class='pointer'></div>
+										</div>
+										<div class='promoter'>
+											<div class='pointer'></div>
+										</div>
+										<div class='5utr'>
+											<div class='pointer'></div>
+										</div>
+									</div>
+								</div>
+								<div class='reliability'>
+								<div class='ruler'>
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+									
+									<div class='tic'>
+									<div class='dot'></div>
+									</div>
+								</div>
+							</div>
+							</div>
+						</div>
+				</div>
+			
+			</div>
+			<div class="list">
+				
+				<div class='list_widget closed'>
+					<div class='eou'>
+						<div class='label'>EOU Identifier: DF34-56B</div>
+					</div>
+					<div class='performance'>
+						<div class='label'>Performance</div>
+						<div class='bar'>
+							<div class='overall'>
+								<div class='sd'></div>
+								<div class='pointer'></div>
+							</div>
+							<div class='promoter'>
+								<div class='pointer'></div>
+							</div>
+							<div class='5utr'>
+								<div class='pointer'></div>
+							</div>
+						</div>
+					<div class='ruler'>
+					<div class='tic'>
+					<div class='label first'>0%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>10%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>20%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>30%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>40%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>50%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>60%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>70%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>80%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label'>90%</div>
+					</div>
+					
+					<div class='tic'>
+					<div class='label last'>100%</div>
+					</div>
+				</div>
+					</div>
+					<div class='reliability'>
+						<div class='label'>Reliability</div>
+						<div class='ruler'>
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class='list_widget open'>
+					<div class='eou'>
+						<div class='label'>EOU Identifier: DF34-56B</div>
+					</div>
+					<div class='performance'>
+						<div class='label'>Performance</div>
+						<div class='bar'>
+							<div class='overall'>
+								<div class='sd'></div>
+								<div class='pointer'></div>
+							</div>
+							<div class='promoter'>
+								<div class='pointer'></div>
+							</div>
+							<div class='5utr'>
+								<div class='pointer'></div>
+							</div>
+						</div>
+						<div class='ruler'>
+							<div class='tic'>
+							<div class='label first'>0%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>10%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>20%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>30%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>40%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>50%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>60%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>70%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>80%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label'>90%</div>
+							</div>
+							
+							<div class='tic'>
+							<div class='label last'>100%</div>
+							</div>
+						</div>	
+					</div>
+					<div class='reliability'>
+						<div class='label'>Reliability</div>
+						<div class='ruler'>
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+							
+							<div class='tic'>
+							<div class='dot'></div>
+							</div>
+						</div>
+					</div>
+					
+					<div class='diagram promoter'>
+						<div class="label">promoter</div>
+						<div class='line'>
+							<div class='container_b'>
+								<div class='seq'>
+									<div class='box'>
+										<div class='label'>ATGCAT</div>
+									</div>
+								</div>
+								<div class='paren'>
+									<div class='label'>10</div>
+								</div>
+								<div class='seq'>
+									<div class='box'>
+										<div class='label'>ATGCAT</div>
+									</div>
+								</div>
+								<div class='paren'>
+									<div class='label'>35</div>
+								</div>
+								<div class='tss'>
+									<div class='box'>
+										<div class='label'>TSS</div>
+									</div>
+								</div>
+							</div>
+						</div>		
+					</div>
+					
+					<div class='diagram 5utr'>
+						<div class="label">5'utr</div>
+						<div class='line'>
+							<div class='container_b'>
+								<div class='seq'>
+									<div class='box'>
+										<div class='label'>ATGCAT</div>
+									</div>
+								</div>
+								<div class='paren'>
+									<div class='label'>10</div>
+								</div>
+								<div class='seq'>
+									<div class='box'>
+										<div class='label'>ATGCAT</div>
+									</div>
+								</div>
+								<div class='paren'>
+									<div class='label'>35</div>
+								</div>
+								<div class='tss'>
+									<div class='box'>
+										<div class='label'>TSS</div>
+									</div>
+								</div>
+							</div>
+						</div>		
+					</div>
+					
+				</div>
+				
+			</div>
+	</body>
+</html> 
